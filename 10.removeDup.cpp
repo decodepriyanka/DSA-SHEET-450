@@ -41,7 +41,8 @@ int findDuplicate(vector<int>& nums) {
 
 ---------------------------Approach 3 ---------------------------------BEST APPROACH USING SLOW , FAST POINTER METHOD ------------------
 
-
+TC - 0(N) , SC - O(1)
+	
     int findDuplicate(vector<int>& nums) {
       int slow = nums[0]; 
     int fast = nums[0];
@@ -57,4 +58,20 @@ int findDuplicate(vector<int>& nums) {
         }
        return slow; 
     }
- 
+
+
+-------------------------------APPROACH 4 -----------------------------USING UNORDERED MAP ---------------------------------------------
+	TC - O(N) , SC - O(N)
+
+int findDuplicate(vector<int>& nums) {
+unordered_map<int,int>m;int res;
+for(auto it : nums){
+    m[it]++;
+}
+for(auto it:m){
+    if(it.second>1){
+        res = it.first;
+    }
+}
+return res;
+    }

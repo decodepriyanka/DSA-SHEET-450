@@ -29,3 +29,29 @@ Output: [1,3,2]
         
 
     }
+
+----------------------Solution 2 ------------------ TC - O(N)------------------------------
+     void nextPermutation(vector<int>& a) {
+     
+        //find a[i]>a[i+1]
+        int toswap=INT_MIN,withswap=INT_MIN;
+        for(int i=a.size()-1;i>0;i--){
+            if(a[i]>a[i-1]){
+                toswap=i-1;
+                break;
+            }
+        }
+        //edge case
+        if(toswap==INT_MIN) return reverse(a.begin(),a.end());
+        //just greater element than toswap.
+        else{
+            for(int i=a.size()-1;i>toswap;i--){
+                if(a[i]>a[toswap]){
+                    withswap=i;
+                    break;
+                }
+            }
+            swap(a[toswap],a[withswap]);
+            return reverse(a.begin()+toswap+1,a.end()); 
+        }
+    }
